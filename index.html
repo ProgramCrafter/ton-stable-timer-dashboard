@@ -24,7 +24,17 @@
         )
       );
       
-      let timer_root = new tonweb.Address('-1:1510202200000000000000000000000000000000000000000000000000000000');
+      let timer_collection = new tonweb.Address('-1:1510202200000000000000000000000000000000000000000000000000000000');
+      
+      function cell_to_addr(addr_data) {
+        let shifted_cell = new tonweb.boc.Cell();
+        shifted_cell.bits.writeUint(0, 5);
+        shifted_cell.bits.writeBytes(tonweb.utils.base64ToBytes(addr_data));
+        
+        let tag = shifted_cell.bits.array[1] ? '-1' : '0';
+        
+        return tag + ':' + tonweb.utils.bytesToHex(shifted_cell.bits.array.slice(2, 2 + 32));
+      }
       
       async function explore(addr, cache) {
         if (cache[addr]) {return [];}
@@ -34,14 +44,34 @@
         console.debug(bell_data);
         
         if (bell_data.exit_code == 0) {
-          return [addr.toString(true) + ': ' + bell_data.stack];
+          return [addr.toString(true) + ': ' + bell_data.stack.join()];
+        } else if (bell_data.exit_code == -13) {
+          return [addr.toString(true) + ': no bell: contract uninit'];
         } else {
-          return [addr.toString(true) + ': get-method failed: ' + bell_data];
+          return [addr.toString(true) + ': get_bell_data method failed: ' + bell_data];
         }
       }
       
       (async () => {
-        $('#explored').innerText = (await explore(timer_root, {})).join('\n');
+        let timer_root_call = await tonweb.call(addr, 'get_root_bell', []);
+        
+        if (timer_root_call.exit_code == -13) {
+          $('#explored').innerText = 'ERROR: Timer contract: uninitialized';
+        } else if (timer_root_call.exit_code == 0) {
+          if (timer_root_call.stack.length != 1) {
+            $('#explored').innerText = 'ERROR: Timer contract: incorrect results count';
+            return;
+          }
+          if (timer_root_call.stack[0][0] != 'cell') {
+            $('#explored').innerText = 'ERROR: Timer contract: expected cell';
+            return;
+          }
+          
+          let timer_root = cell_to_addr(timer_root_call.stack[0][1].object.data.b64);
+          $('#explored').innerText = (await explore(timer_root, {})).join('\n');
+        } else {
+          $('#explored').innerText = 'ERROR: Timer contract: get_root_bell method failed';
+        }
       })();
     </script>
   </body>
