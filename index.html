@@ -53,7 +53,7 @@
       }
       
       (async () => {
-        let timer_root_call = await tonweb.call(addr, 'get_root_bell', []);
+        let timer_root_call = await tonweb.call(timer_collection, 'get_root_bell', []);
         
         if (timer_root_call.exit_code == -13) {
           $('#explored').innerText = 'ERROR: Timer contract: uninitialized';
