@@ -20,20 +20,24 @@
       let tonweb = new TonWeb(
         new TonWeb.HttpProvider(
           'https://testnet.toncenter.com/api/v2/jsonRPC',
-          // {apiKey: 'f6f4bb2f18a192ae0e1c1d40801c9e6fbef06ca8ab6c275e3f6165d3db77dc03'}
+          {apiKey: 'f6f4bb2f18a192ae0e1c1d40801c9e6fbef06ca8ab6c275e3f6165d3db77dc03'}
         )
       );
       
-      let timer_root = new tonweb.Address('-1:0000000000000000000000000000000000000000000000000000000000000000');
+      let timer_root = new tonweb.Address('-1:1510202200000000000000000000000000000000000000000000000000000000');
       
       async function explore(addr, cache) {
         if (cache[addr]) {return [];}
         cache[addr] = true;
         
-        let a = tonweb.call(addr, 'get_bell_data', []);
-        console.log(a);
+        let bell_data = await tonweb.call(addr, 'get_bell_data', []);
+        console.debug(bell_data);
         
-        return [addr.toString(true)];
+        if (bell_data.exit_code == 0) {
+          return [addr.toString(true) + ': ' + bell_data.stack];
+        } else {
+          return [addr.toString(true) + ': get-method failed: ' + bell_data];
+        }
       }
       
       (async () => {
