@@ -1,8 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <script src="https://raw.githubusercontent.com/toncenter/tonweb/70894568b6c07af8d2c8ea8c1792605f8e9b9052/dist/tonweb.js"></script>
+    <style>
+      body {
+        font-family: Roboto;
+      }
+    </style>
   </head>
   <body>
-    <h1>Work in progress</h1>
+    <h1>Explored contracts:</h1>
+    <div id="explored"></div>
+    
+    <script defer>
+      let $ = document.querySelector.bind(document);
+      let tonweb = new TonWeb(
+        new TonWeb.HttpProvider(
+          'https://testnet.toncenter.com/api/v2/jsonRPC',
+          // {apiKey: 'f6f4bb2f18a192ae0e1c1d40801c9e6fbef06ca8ab6c275e3f6165d3db77dc03'}
+        )
+      );
+      
+      let timer_root = new tonweb.Address('-1:0000000000000000000000000000000000000000000000000000000000000000');
+      
+      async function explore(addr, cache) {
+        if (cache[addr]) {return [];}
+        cache[addr] = true;
+        
+        let a = tonweb.call(addr, 'get_bell_data', []);
+        console.log(a);
+        
+        return [addr.toString(true)];
+      }
+      
+      (async () => {
+        $('#explored').innerText = (await explore(timer_root, {})).join('\n');
+      })();
+    </script>
   </body>
 </html>
