@@ -23,8 +23,17 @@
           {apiKey: 'f6f4bb2f18a192ae0e1c1d40801c9e6fbef06ca8ab6c275e3f6165d3db77dc03'}
         )
       );
+      let tw = new TonWeb(
+        new TonWeb.HttpProvider(
+          'https://toncenter.com/api/v2/jsonRPC',
+          {apiKey: 'd515f9787d51e2e2adea90ac33e1f0adb9ea406fea817178d891a94a6e4c8d35'}
+        )
+      );
       
-      let timer_collection = new tonweb.Address('-1:1510202200000000000000000000000000000000000000000000000000000000');
+      async function timer_collection() {
+        let domain = await tw.dns.getWalletAddress('stabletimer.ton');
+        return domain ?? new tonweb.Address('0:1510202200000000000000000000000000000000000000000000000000000000');
+      }
       
       function cell_to_addr(addr_data) {
         let shifted_cell = new tonweb.boc.Cell();
@@ -36,11 +45,11 @@
         return tag + ':' + tonweb.utils.bytesToHex(shifted_cell.bits.array.slice(2, 2 + 32));
       }
       
-      async function explore(addr, cache) {
+      async function explore(addr, cache, provider = tonweb) {
         if (cache[addr]) {return [];}
         cache[addr] = true;
         
-        let bell_data = await tonweb.call(addr, 'get_bell_data', []);
+        let bell_data = await provider.call(addr, 'get_bell_data', []);
         console.debug(bell_data);
         
         if (bell_data.exit_code == 0) {
@@ -52,8 +61,9 @@
         }
       }
       
-      (async () => {
-        let timer_root_call = await tonweb.call(timer_collection, 'get_root_bell', []);
+      async function update_timer(timer_addr = null, provider = tonweb) {
+        timer_addr = timer_addr || await timer_collection();
+        let timer_root_call = await provider.call(timer_addr, 'get_root_bell', []);
         
         if (timer_root_call.exit_code == -13) {
           $('#explored').innerText = 'ERROR: Timer contract: uninitialized';
@@ -68,11 +78,13 @@
           }
           
           let timer_root = cell_to_addr(timer_root_call.stack[0][1].object.data.b64);
-          $('#explored').innerText = (await explore(timer_root, {})).join('\n');
+          $('#explored').innerText = (await explore(timer_root, {}, provider)).join('\n');
         } else {
           $('#explored').innerText = 'ERROR: Timer contract: get_root_bell method failed';
         }
-      })();
+      }
+      
+      update_timer();
     </script>
   </body>
 </html>
