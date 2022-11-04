@@ -48,7 +48,7 @@
       function trim_left_bits(bytes_array, n, m) {
         let shifted_cell = new tonweb.boc.Cell();
         shifted_cell.bits.writeUint(0, 1024 - n % 8);
-        shifted_cell.bits.writeBytes(TonWeb.utils.base64ToBytes(addr_data));
+        shifted_cell.bits.writeBytes(TonWeb.utils.base64ToBytes(bytes_array));
         
         n += 1024 - n % 8;
         return shifted_cell.bits.array.slice(n / 8, n / 8 + m);
@@ -71,7 +71,7 @@
           let time_repr = (new Date(1000 * bell_data.stack[0][1])).toLocaleString();
           let content = TonWeb.boc.Cell.oneFromBoc(TonWeb.utils.base64ToBytes(bell_data.stack[3][1].bytes));
           let cont_repr = TonWeb.utils.bytesToHex(await content.hash());
-          let repr = prefix + ': ' + sa
+          let repr = prefix + ' - ' + sa
                    + ': ' + time_repr
                    + ', ' + bell_data.stack[1][1] / 1000000000
                    + ' TON to ' + cell_to_addr(bell_data.stack[2][1].object.data.b64)
@@ -89,7 +89,7 @@
                  + (await explore(c1, cache, provider, prefix + 'L'))
                  + (await explore(c2, cache, provider, prefix + 'R'));
           }
-          if (children.bits[0] & 128 == 0) {
+          if (children[0] & 128 == 0) {
             let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 5, 32));
             return [repr]
                  + (await explore(c2, cache, provider, prefix + 'R'));
@@ -100,9 +100,9 @@
                + (await explore(c1, cache, provider, prefix + 'L'));
           
         } else if (bell_data.exit_code == -13) {
-          return [prefix + ': ' + sa + ': no bell: contract uninit'];
+          return [prefix + ' - ' + sa + ': no bell: contract uninit'];
         } else {
-          return [prefix + ': ' + sa + ': get_bell_data method failed: ' + bell_data];
+          return [prefix + ' - ' + sa + ': get_bell_data method failed: ' + bell_data];
         }
       }
       
@@ -123,7 +123,9 @@
           }
           
           let timer_root = cell_to_addr(timer_root_call.stack[0][1].object.data.b64);
-          $('#explored').innerText = (await explore(timer_root, {}, provider)).join('\n');
+          $('#explored').innerText =
+           (await explore(timer_root, {}, provider, '.'))
+            .join('\n');
         } else {
           $('#explored').innerText = 'ERROR: Timer contract: get_root_bell method failed';
         }
