@@ -55,6 +55,7 @@
       }
       
       async function explore(addr, cache, provider = tonweb, prefix = '') {
+        addr = new TonWeb.Address(addr);
         let sa = addr.toString(true, true);
         
         if (cache[addr]) {
@@ -69,36 +70,34 @@
         
         if (bell_data.exit_code == 0) {
           let time_repr = (new Date(1000 * bell_data.stack[0][1])).toLocaleString();
+          let dest = cell_to_addr(bell_data.stack[2][1].object.data.b64);
+          let dest_repr = (new TonWeb.Address(dest)).toString(true, true);
           let content = TonWeb.boc.Cell.oneFromBoc(TonWeb.utils.base64ToBytes(bell_data.stack[3][1].bytes));
           let cont_repr = TonWeb.utils.bytesToHex(await content.hash());
           let repr = prefix + ' - ' + sa
                    + ': ' + time_repr
                    + ', ' + bell_data.stack[1][1] / 1000000000
-                   + ' TON to ' + cell_to_addr(bell_data.stack[2][1].object.data.b64)
+                   + ' TON to ' + dest_repr
                    + ' with content repr hash ' + cont_repr;
           
-          let children_bits = bell_data.stack[5][1].object.data.len;
-          let children = TonWeb.utils.base64ToBytes(bell_data.stack[5][1].object.data.b64);
-          if (children_bits == 2) {
-            return [repr];
+          let explored_list = [repr];
+          
+          if (bell_data.stack[5][1].object.data.len > 2) {
+            explored_list = 
+              explored_list
+             .concat(await explore(
+                cell_to_addr(bell_data.stack[5][1].object.data.b64),
+                cache,  provider,  prefix + 'L'));
           }
-          if (children_bits == 728) {
-            let c1 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 12, 32));
-            let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 376, 32));
-            return [repr]
-                   .concat(await explore(c1, cache, provider, prefix + 'L'))
-                   .concat(await explore(c2, cache, provider, prefix + 'R'));
-          }
-          if (children[0] & 128 == 0) {
-            let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 13, 32));
-            return [repr]
-                   .concat(await explore(c2, cache, provider, prefix + 'R'));
+          if (bell_data.stack[6][1].object.data.len > 2) {
+            explored_list = 
+              explored_list
+             .concat(await explore(
+                cell_to_addr(bell_data.stack[6][1].object.data.b64),
+                cache,  provider,  prefix + 'R'));
           }
           
-          let c1 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 12, 32));
-          return [repr]
-                 .concat(await explore(c1, cache, provider, prefix + 'L'));
-          
+          return explored_list;
         } else if (bell_data.exit_code == -13) {
           return [prefix + ' - ' + sa + ': no bell: contract uninit'];
         } else {
@@ -115,6 +114,10 @@
         } else if (timer_root_call.exit_code == 0) {
           if (timer_root_call.stack.length != 1) {
             $('#explored').innerText = 'ERROR: Timer contract: incorrect results count';
+            return;
+          }
+          if (timer_root_call.stack[0][0] == 'list') {
+            $('#explored').innerText = 'Nothing scheduled';
             return;
           }
           if (timer_root_call.stack[0][0] != 'cell') {
