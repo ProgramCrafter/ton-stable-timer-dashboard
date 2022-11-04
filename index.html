@@ -38,26 +38,71 @@
       function cell_to_addr(addr_data) {
         let shifted_cell = new tonweb.boc.Cell();
         shifted_cell.bits.writeUint(0, 5);
-        shifted_cell.bits.writeBytes(tonweb.utils.base64ToBytes(addr_data));
+        shifted_cell.bits.writeBytes(TonWeb.utils.base64ToBytes(addr_data));
         
         let tag = shifted_cell.bits.array[1] ? '-1' : '0';
         
-        return tag + ':' + tonweb.utils.bytesToHex(shifted_cell.bits.array.slice(2, 2 + 32));
+        return tag + ':' + TonWeb.utils.bytesToHex(shifted_cell.bits.array.slice(2, 2 + 32));
       }
       
-      async function explore(addr, cache, provider = tonweb) {
-        if (cache[addr]) {return [];}
+      function trim_left_bits(bytes_array, n, m) {
+        let shifted_cell = new tonweb.boc.Cell();
+        shifted_cell.bits.writeUint(0, 1024 - n % 8);
+        shifted_cell.bits.writeBytes(TonWeb.utils.base64ToBytes(addr_data));
+        
+        n += 1024 - n % 8;
+        return shifted_cell.bits.array.slice(n / 8, n / 8 + m);
+      }
+      
+      async function explore(addr, cache, provider = tonweb, prefix = '') {
+        let sa = addr.toString(true, true);
+        
+        if (cache[addr]) {
+          console.error('Exploring', sa, 'second time');
+          return [];
+        }
+        console.log('Exploring bell', sa);
         cache[addr] = true;
         
         let bell_data = await provider.call(addr, 'get_bell_data', []);
         console.debug(bell_data);
         
         if (bell_data.exit_code == 0) {
-          return [addr.toString(true) + ': ' + bell_data.stack.join()];
+          let time_repr = (new Date(1000 * bell_data.stack[0][1])).toLocaleString();
+          let content = TonWeb.boc.Cell.oneFromBoc(TonWeb.utils.base64ToBytes(bell_data.stack[3][1].bytes));
+          let cont_repr = TonWeb.utils.bytesToHex(await content.hash());
+          let repr = prefix + ': ' + sa
+                   + ': ' + time_repr
+                   + ', ' + bell_data.stack[1][1] / 1000000000
+                   + ' TON to ' + cell_to_addr(bell_data.stack[2][1].object.data.b64)
+                   + ' with content repr hash ' + cont_repr;
+          
+          let children_bits = bell_data.stack[5][1].object.data.len;
+          let children = TonWeb.utils.base64ToBytes(bell_data.stack[5][1].object.data.b64);
+          if (children_bits == 2) {
+            return [repr];
+          }
+          if (children_bits == 728) {
+            let c1 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 4, 32));
+            let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 368, 32));
+            return [repr]
+                 + (await explore(c1, cache, provider, prefix + 'L'))
+                 + (await explore(c2, cache, provider, prefix + 'R'));
+          }
+          if (children.bits[0] & 128 == 0) {
+            let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 5, 32));
+            return [repr]
+                 + (await explore(c2, cache, provider, prefix + 'R'));
+          }
+          
+          let c1 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 4, 32));
+          return [repr]
+               + (await explore(c1, cache, provider, prefix + 'L'));
+          
         } else if (bell_data.exit_code == -13) {
-          return [addr.toString(true) + ': no bell: contract uninit'];
+          return [prefix + ': ' + sa + ': no bell: contract uninit'];
         } else {
-          return [addr.toString(true) + ': get_bell_data method failed: ' + bell_data];
+          return [prefix + ': ' + sa + ': get_bell_data method failed: ' + bell_data];
         }
       }
       
