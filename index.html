@@ -47,10 +47,10 @@
       
       function trim_left_bits(bytes_array, n, m) {
         let shifted_cell = new tonweb.boc.Cell();
-        shifted_cell.bits.writeUint(0, 1024 - n % 8);
-        shifted_cell.bits.writeBytes(TonWeb.utils.base64ToBytes(bytes_array));
+        shifted_cell.bits.writeUint(0, (1024 - n) % 8);
+        shifted_cell.bits.writeBytes(bytes_array);
         
-        n += 1024 - n % 8;
+        n += (1024 - n) % 8;
         return shifted_cell.bits.array.slice(n / 8, n / 8 + m);
       }
       
