@@ -83,19 +83,19 @@
             return [repr];
           }
           if (children_bits == 728) {
-            let c1 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 4, 32));
-            let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 368, 32));
+            let c1 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 12, 32));
+            let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 376, 32));
             return [repr]
                    .concat(await explore(c1, cache, provider, prefix + 'L'))
                    .concat(await explore(c2, cache, provider, prefix + 'R'));
           }
           if (children[0] & 128 == 0) {
-            let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 5, 32));
+            let c2 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 13, 32));
             return [repr]
                    .concat(await explore(c2, cache, provider, prefix + 'R'));
           }
           
-          let c1 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 4, 32));
+          let c1 = '0:' + TonWeb.utils.bytesToHex(trim_left_bits(children, 12, 32));
           return [repr]
                  .concat(await explore(c1, cache, provider, prefix + 'L'));
           
