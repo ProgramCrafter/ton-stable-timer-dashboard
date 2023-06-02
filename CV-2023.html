@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html style="background-color: #F7F9FB;">
+    <head>
+        <style>
+            .quote {
+                padding: 8px 0 8px 16px;
+                margin-left: 16px;
+                border-left: #08c 1px solid;
+            }
+            .offset {
+                margin-left: 32px;
+            }
+            li {
+                margin-bottom: 6px;
+            }
+            i {
+                color: #232328;
+            }
+            table img {
+                width: 224px;
+                height: 224px;
+                margin-bottom: 4px;
+            }
+            table td {
+                padding: 8px;
+                width: 224px;
+                vertical-align: top;
+            }
+        </style>
+    </head>
+    
+    <body style="border: #08c 1px solid;max-width: 1020px;margin: 16px auto;padding: 16px;font-family: Bahnschrift;font-size: 18px;">
+    <header style="padding: 8px; padding-bottom: 16px;border-bottom: #08c 1px solid;margin-bottom: 16px;display: flex;">
+      <img src="https://avatars.githubusercontent.com/u/82749242" width="64" height="64"><span style="font-size: 23px;margin: 16px;line-height: 32px;">ProgramCrafter | Software Engineer &amp; Architect - <a href="https://t.me/pcrafter">Telegram</a> - <a href="https://gitlab.com/ProgramCrafter">GitLab</a> - <a href="https://github.com/ProgramCrafter">GitHub</a></span>
+    </header>
+    <div>
+    <p>Hello! My name is Andrey. I admire the open-source development and am actively following it. I have been programming for seven years, with a few focused on olympiads and the last focused on blockchain.</p>
+
+    <h3>Skills &amp; Interests</h3>
+    <ul>
+        <li>Programming Languages:</li>
+        <li class="offset"><b>best</b> in <i>Python, Lua, Rust, FunC</i></li>
+        <li class="offset"><b>familiar</b> with <i>C++, JavaScript, Tact</i></li>
+        <li class="offset">also worked with <i>ActionScript 3 (the language used by Flash)</i></li>
+        <li>Tech skills: <i>Git, small automatization scripts in Python, Linux</i></li>
+        <li>Interests:</li>
+        <li class="offset"><i>Blockchain Technologies, Data Science</i></li>
+        <li class="offset">would like to see <i>AAA Game Development</i></li>
+        <li class="offset">certainly <b>don't want</b> to get involved into <i>blockchain gamedev</i></li>
+    </ul>
+
+    <div class="quote">
+        The blockchain development is mostly an architect's work. When working on TON Timer, I had to design contracts' interaction scheme. Several times I had to rework it because I've chosen a data structure that requires to maintain certain invariants, and I mistakenly thought that they are not necessary or will be maintained automatically.<br><br>
+        Also, you should be open to the truth, especially when it comes to say that the program is suboptimal. When I realized that the tree-like scheme of timer subcontracts uses two round loops of messages to complete the operation, I've understood that this is <b>not</b> the correct way to do it, and I switched to much simpler architecture that holds all data in a single contract, surprisingly being more gas-efficient.
+    </div>
+
+    <h3>Recent Activity</h3>
+    <ul>
+        <li>Actively working with TON since 2022</li>
+        <li>Improving the TON documentation in form of the TON Footsteps</li>
+        <li class="offset">Thus, suggesting and completing many TON Footsteps</li>
+        <li>Experimenting with local AI models</li>
+        <li>Working on <a href="https://github.com/ProgramCrafter/ratelance">Ratelance</a> platform</li>
+        <li>Working on my personal projects</li>
+        <li>Helping people to get better, and better, and less wrong (in particular, to know TON pros, cons and caveats better), personally teaching a few on the skills I'm best at</li>
+        <li>Providing security audit or helping to develop smart contracts in TON</li>
+    </ul>
+
+    <h3>The most recent thing I've built</h3>
+    Smart-contract that helps to find domain contracts in TON DNS.<br><br>
+    Usually, if you enter some domain in the search bar, you get to the linked wallet - or don't get anywhere if the wallet is not linked. That makes it hard to find domains by their name only.<br><br>
+    I've created contract on `resolve-contract.ton`. When you pass the domain name you want to find as subdomain (like `stabletimer.ton.resolve-contract.ton`), you get the address of domain contract. You're then able to renew it, gather statistics or do whatever else.
+
+    <h3>Hall of Fame</h3>
+    <table>
+        <tr>
+            <td>
+              <a href="https://tonscan.org/nft/EQA1st2MaZ1stGiYcGfgzQ-uohivzUwklLpBI5ecYi6ZES94"><img src="https://i.tonscan.org/resize/_hAErCuNZnms5lXhyV3pExB7awRGa3k-wnoYS3fyxt0/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0L2IvYy82MmZiYTUwMjE3YzNmZTNjYmFhZDllN2YvaW1hZ2VzLzk0M2U5OTRmOTEyMjdjM2ZkYmNjYmM2ZDg2MzViZmFhYjI1NmZiYjQ.jpg"></img></a>
+              <a href="https://ton.org/ton-smart-challenge-2">TSC #2, 1st place out of 181</a>
+            </td>
+            <td>
+              <a href="https://tonscan.org/nft/EQD3e-JJIJfX00kqCGyIBqzAabjzrQhQqKxWcbYG1VwnUkXE"><img src="https://i.tonscan.org/resize/EZN6c0zP8OtysTCkbDruvO6Tl3fGo6Fts9nQ6yiK09Q/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0L2IvYy82MzNlZTg4OGJhNzA5YjA0ZTQ4MDY2ZWEvaW1hZ2VzLzMyZTEyNjViNGZmZTk4MmJhMTcxNjhhMDM0ZmUwNTA2Y2IwODlmNmM.jpg"></img></a>
+              <a href="https://ton.org/ton-test-challenge">TON Test Challenge</a>
+            </td>
+            <td>
+              <a href="https://tonscan.org/nft/EQChYRN6rcy7pR61Pfj1JwH_-9HOvkqtAJFydESSdlGRHoar"><img src="https://i.tonscan.org/resize/ukt2jl8Qc1d9peQlN66sf8yHVUxDTw2SGcIgRD4lp8c/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0LWxvY2FsL2IvYy9mODRlZjdjYjBjMWQwODVkMDliMDAwMDAvaW1hZ2VzL3hKV3RPdWRsSDViMWQyWU0zaFBfM0hCRHZ3MGhfMVBDcXJPbDNWcHc2NFEuanBn.jpg"></img></a>
+              <a href="https://ton.org/ton-hack-challenge">TON Hack Challenge</a>
+            </td>
+            <td>
+              <img src="https://ton.org/images/ton-smart-challenge-func/1440.png" style="object-fit: cover;object-position: left;"></img>
+              <a href="https://ton.org/ton-smart-challenge-3">TON Smart Challenge 3</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <a href="https://tonscan.org/nft/EQBg-8wftvohlEIf49w1uZ_mJdIAkwn7WWnR2DDNlKZioODq"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+              <a href="https://github.com/ton-society/ton-footsteps/issues/110">TON Footstep #110</a>
+            </td>
+            <td>
+              <a href="https://tonscan.org/nft/EQCdZpMZ-dD0wYjvga83UcN8g5jW78w0VM8-fJOgxqU9DPTg"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+              <a href="https://github.com/ton-society/ton-footsteps/issues/123">TON Footstep #123</a>
+            </td>
+            <td>
+              <a href="https://tonscan.org/nft/EQA32uVyPvUJoQ59GA2IaAWVYtYbBhlGdYoZTgCDbeQz76t_"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+              <a href="https://github.com/ton-society/ton-footsteps/issues/124">TON Footstep #124</a>
+            </td>
+            <td>
+              <a href="https://tonscan.org/nft/EQAUHcqceO8qvG37cHfHPIBpUK4ttIGcyNnWbmdTuibdl6g5"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+              <a href="https://github.com/ton-society/ton-footsteps/issues/150">TON Footstep #150</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <a href="https://tonscan.org/tx/dAxZlThmKBV-5eiAzSxzkADjMH_LFkVFmSXzYGHmTNk="><img src="https://repository-images.githubusercontent.com/595624687/47a85578-12e7-4e4c-a12c-8aae6c0a6c29" style="height: 176px;margin-bottom: 30px;"></img></a>
+              Quadratic funding (<a href="https://dorahacks.io/buidl/4227">DoraHacks Hack-a-TONx</a>)
+            </td>
+        </tr>
+    </table>
+</div></body></html>
