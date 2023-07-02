@@ -16,7 +16,7 @@
             i {
                 color: #232328;
             }
-            table img {
+            table img, table svg {
                 width: 224px;
                 height: 224px;
                 margin-bottom: 4px;
@@ -25,6 +25,22 @@
                 padding: 8px;
                 width: 224px;
                 vertical-align: top;
+            }
+            span.manifold {
+                text-decoration: none;
+                position: relative;
+            }
+            span.manifold:after {
+                content: ' ';
+                font-size: inherit;
+                display: block;
+                position: absolute;
+                right: 0;
+                left: 0;
+                top: 40%;
+                bottom: 40%;
+                border-top: 1px solid #00a;
+                border-bottom: 1px solid #00a;
             }
         </style>
     </head>
@@ -59,6 +75,9 @@
         <li>Actively working with TON since 2022</li>
         <li>Improving the TON documentation in form of the TON Footsteps</li>
         <li class="offset">Thus, suggesting and completing many TON Footsteps</li>
+        <li>Exploring <a href="https://manifold.markets/"><span class="manifold">M</span>anifold prediction markets</a></li>
+        <li class="offset">Considering whether to apply there</li>
+        <li class="offset">Considering whether to fork that service and move to TON for better availability</li>
         <li>Experimenting with local AI models</li>
         <li>Working on <a href="https://github.com/ProgramCrafter/ratelance">Ratelance</a> platform</li>
         <li>Working on my personal projects</li>
@@ -71,7 +90,7 @@
     Usually, if you enter some domain in the search bar, you get to the linked wallet - or don't get anywhere if the wallet is not linked. That makes it hard to find domains by their name only.<br><br>
     I've created contract on `resolve-contract.ton`. When you pass the domain name you want to find as subdomain (like `stabletimer.ton.resolve-contract.ton`), you get the address of domain contract. You're then able to renew it, gather statistics or do whatever else.
 
-    <h3>Hall of Fame <i>(updated at 2023-06-11)</i></h3>
+    <h3>Hall of Fame <i>(updated at 2023-07-02)</i></h3>
     <table>
         <tr>
             <td>
@@ -112,19 +131,27 @@
         <tr>
             <td>
               <a href="https://tonscan.org/tx/dAxZlThmKBV-5eiAzSxzkADjMH_LFkVFmSXzYGHmTNk="><img src="https://repository-images.githubusercontent.com/595624687/47a85578-12e7-4e4c-a12c-8aae6c0a6c29" style="height: 176px;margin-bottom: 30px;"></img></a>
-              Quadratic funding (<a href="https://dorahacks.io/buidl/4227">DoraHacks Hack-a-TONx</a>)
+              Ratelance quadratic fund. (<a href="https://dorahacks.io/buidl/4227">DoraHacks Hack-a-TONx</a>)
             </td>
             <td>
               <a href="https://programcrafter.github.io/ton-stable-timer/"><img src="https://programcrafter.github.io/ton-stable-timer/logo.png"></img></a>
               TON Timer (<a href="https://github.com/ton-society/ton-footsteps/issues/71">Footstep 71</a>)
             </td>
             <td>
-              <img src="https://tonb.io/icons/favicon-128x128.png" style="filter: drop-shadow(1px 1px #128ea980) drop-shadow(-1px 1px #21ceb280);"></img>
-              Audit of <a href="https://tonb.io/">TONBanking</a>
+              <svg width="224" height="224" viewBox="0 0 78 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M39.8492 58.2373C39.9469 58.1595 40.0347 58.0694 40.1106 57.9692L29.0504 78.5039C20.7286 76.2697 13.3636 71.2691 8.10735 64.2844C2.85111 57.2997 0.000164585 48.7249 0.000495097 39.9014C0.000622793 29.3189 4.0991 19.1699 11.3943 11.687C18.6895 4.20412 28.5839 0.000345159 38.9007 0.000469743C39.5231 0.000477259 40.1766 0.0228408 40.8146 0.0515775L26.689 25.2372L24.9681 28.3111L24.9307 28.3686L24.912 28.4005C24.8845 28.4298 24.8614 28.4631 24.8436 28.4995C24.8116 28.5378 24.7854 28.5809 24.7658 28.6272C24.7303 28.6782 24.6981 28.7315 24.6693 28.7868C24.632 28.8761 24.5822 28.956 24.5542 29.0421L24.5137 29.1219C24.5137 29.1219 24.5137 29.1219 24.5137 29.1443L24.467 29.2209C24.4468 29.2545 24.436 29.2931 24.4359 29.3326L24.4079 29.3997C24.3581 29.5401 24.3207 29.6678 24.2834 29.8082C24.2534 29.8949 24.2335 29.9849 24.2243 30.0764C24.1956 30.1808 24.1759 30.2876 24.1651 30.3956C24.1544 30.4384 24.1481 30.4822 24.1465 30.5264C24.1201 30.7071 24.1076 30.8896 24.1091 31.0723C24.1091 31.2096 24.1091 31.3373 24.1278 31.4777C24.2192 32.3114 24.4972 33.1122 24.94 33.8175C24.94 33.8175 24.94 33.8175 24.94 33.8367L37.5463 57.6851C37.6131 57.8186 37.7015 57.9394 37.8077 58.0426C37.9486 58.1982 38.1189 58.3227 38.3084 58.4083C38.4978 58.494 38.7023 58.539 38.9094 58.5406C38.9865 58.5379 39.0634 58.5304 39.1396 58.5182C39.2025 58.516 39.2646 58.5031 39.3233 58.4799C39.4574 58.4435 39.5854 58.3864 39.7029 58.3108C39.7537 58.2907 39.8026 58.2661 39.8492 58.2373Z" fill="url(#paint0_linear_945_3332)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M77.7814 39.8836C77.7812 61.6377 60.6308 79.5069 39.4225 79.7844C35.9236 79.8432 32.4331 79.4136 29.0471 78.5074L40.1074 57.9728C40.1625 57.9006 40.2114 57.8237 40.2537 57.7429L53.1034 33.847C53.1015 33.8407 53.1015 33.8341 53.1034 33.8278C53.5011 33.0388 53.7062 32.1625 53.7009 31.2742C53.7044 30.4166 53.4991 29.5717 53.1034 28.8162C53.0775 28.7744 53.0546 28.7307 53.035 28.6854C52.625 27.9682 52.0293 27.3815 51.3141 26.9903C50.636 26.6519 49.8897 26.4824 49.1357 26.4955L28.805 26.4953C28.6588 26.4953 28.4938 26.4953 28.3227 26.4953C28.1442 26.4973 27.9662 26.5144 27.7905 26.5463C27.5788 26.5629 27.3698 26.6058 27.1681 26.674C26.9477 26.7345 26.734 26.8179 26.5301 26.923C26.3782 26.9954 26.2324 27.0808 26.0945 27.1783C26.0945 27.1783 26.0758 27.1784 26.0665 27.2007C25.9362 27.2818 25.8133 27.3747 25.6992 27.4784C25.6645 27.5039 25.6322 27.5328 25.6028 27.5646C25.4863 27.6637 25.3761 27.7703 25.2729 27.8838C25.1529 28.0134 25.0426 28.1521 24.943 28.2988L26.664 25.2248L40.7896 0.0392539C50.7627 0.541646 60.1655 4.95855 67.0514 12.3755C73.9374 19.7925 77.7792 29.6415 77.7814 39.8836Z" fill="url(#paint1_linear_945_3332)"/><defs><linearGradient id="paint0_linear_945_3332" x1="20.4062" y1="-0.775436" x2="20.4053" y2="77.7217" gradientUnits="userSpaceOnUse"><stop stop-color="#138AAB"/><stop offset="1" stop-color="#21D0B3"/></linearGradient><linearGradient id="paint1_linear_945_3332" x1="51.3704" y1="-1.05232" x2="51.3694" y2="80.7837" gradientUnits="userSpaceOnUse"><stop stop-color="#1DCDFE"/><stop offset="1" stop-color="#1492B5"/></linearGradient></defs></svg>
+              Audit of <a href="https://tonb.io/techdescription">TONBanking</a>
             </td>
             <td>
               <img src="https://s.getgems.io/nft/c/636f9fe5779e098085cf4b16/4/image.png"></img>
               <a href="https://github.com/ProgramCrafter/wallet-contract/">wallet v5</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <a href="https://tonscan.org/nft/EQDv7kUFj9QGRZcgFBXMNZifKPtqNPAqxDMQFFL13xzl-QwC"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+              <a href="https://github.com/ton-society/ton-footsteps/issues/251">TON Footstep #251</a>
             </td>
         </tr>
     </table>
