@@ -7,13 +7,25 @@
                 margin-left: 16px;
                 border-left: #08c 1px solid;
             }
+            .frame {
+                padding: 0 0 8px 20px;
+                margin-left: 16px;
+                margin-top: 48px;
+                margin-bottom: 48px;
+                border: #08c 4px solid;
+                color: #306;
+            }
+            .hide-no-pythonanywhere {
+                display: none;
+                visibility: hidden;
+            }
             .offset {
                 margin-left: 32px;
             }
             li {
                 margin-bottom: 6px;
             }
-            i {
+            b, i {
                 color: #232328;
             }
             table img, table svg {
@@ -47,8 +59,21 @@
     
     <body style="border: #08c 1px solid;max-width: 1020px;margin: 16px auto;padding: 16px;font-family: Bahnschrift;font-size: 18px;">
     <header style="padding: 8px; padding-bottom: 16px;border-bottom: #08c 1px solid;margin-bottom: 16px;display: flex;">
-      <img src="https://avatars.githubusercontent.com/u/82749242" width="64" height="64"><span style="font-size: 23px;margin: 16px;line-height: 32px;">ProgramCrafter | Software Engineer &amp; Architect - <a href="https://t.me/pcrafter">Telegram</a> - <a href="https://gitlab.com/ProgramCrafter">GitLab</a> - <a href="https://github.com/ProgramCrafter">GitHub</a></span>
+      <img src="https://avatars.githubusercontent.com/u/82749242" width="64" height="64"><span style="font-size: 22px;margin: 16px;line-height: 32px;">ProgramCrafter | Software Engineer &amp; Architect - <a href="https://t.me/pcrafter">Telegram</a> - <a href="https://gitlab.com/ProgramCrafter">GitLab</a> - <a href="https://github.com/ProgramCrafter">GitHub</a> - <a href="https://codeforces.com/profile/2020TAndr">Codeforces</a></span>
     </header>
+    
+    <div class="frame hide-no-pythonanywhere">
+        <h3>This site (<a href="/">ratingers.pythonanywhere.com</a>) contains</h3>
+        <table>
+            <tr>
+                <td><a href="/cf-tasks-rating">A neural network</a> that tries to evaluate Codeforces tasks rating</td>
+                <td><a href="/ratelance">Ratelance</a>, an onchain freelancing platform</td>
+                <td><a href="/tx-group-explorer">ChainArrowViewer</a>, TON explorer for studying transaction chains</td>
+                <td><a href="/deployer">WebDeployer</a>, a tool for deploying TON contracts with given code and data</td>
+            </tr>
+        </table>
+    </div>
+    
     <div>
     <p>Hello! My name is Andrey. I admire the open-source development and am actively following it. I have been programming for seven years, with a few focused on olympiads and the last focused on blockchain.</p>
 
@@ -75,13 +100,13 @@
         <li>Actively working with TON since 2022</li>
         <li>Improving the TON documentation in form of the TON Footsteps</li>
         <li class="offset">Thus, suggesting and completing many TON Footsteps</li>
-        <li>Exploring <a href="https://manifold.markets/"><span class="manifold">M</span>anifold prediction markets</a></li>
+        <li>Exploring <a href="https://manifold.markets/AnT/will-we-replace-the-calendar-by-end?r=QW5U"><span class="manifold">M</span>anifold prediction markets</a></li>
         <li class="offset">Considering whether to apply there</li>
         <li class="offset">Considering whether to fork that service and move to TON for better availability</li>
         <li>Experimenting with local AI models</li>
         <li>Working on <a href="https://github.com/ProgramCrafter/ratelance">Ratelance</a> platform</li>
         <li>Working on my personal projects</li>
-        <li>Helping people to get better, and better, and less wrong (in particular, to know TON pros, cons and caveats better), personally teaching a few on the skills I'm best at</li>
+        <li>Helping people to get better, and better, and less wrong, personally teaching a few on the skills I'm best at</li>
         <li>Providing security audit or helping to develop smart contracts in TON</li>
     </ul>
 
@@ -90,7 +115,7 @@
     Usually, if you enter some domain in the search bar, you get to the linked wallet - or don't get anywhere if the wallet is not linked. That makes it hard to find domains by their name only.<br><br>
     I've created contract on `resolve-contract.ton`. When you pass the domain name you want to find as subdomain (like `stabletimer.ton.resolve-contract.ton`), you get the address of domain contract. You're then able to renew it, gather statistics or do whatever else.
 
-    <h3>Hall of Fame <i>(updated at 2023-07-02)</i></h3>
+    <h3>TON Hall of Fame <i>(updated at 2023-07-02)</i></h3>
     <table>
         <tr>
             <td>
@@ -155,4 +180,12 @@
             </td>
         </tr>
     </table>
+    
+    <script>
+        if (location.host == 'ratingers.pythonanywhere.com') {
+            for (let o of document.querySelectorAll('.hide-no-pythonanywhere')) {
+                o.classList.remove('hide-no-pythonanywhere');
+            }
+        }
+    </script>
 </div></body></html>
