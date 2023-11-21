@@ -28,15 +28,22 @@
             b, i {
                 color: #232328;
             }
-            table img, table svg {
+            .table img, .table svg {
                 width: 224px;
                 height: 224px;
                 margin-bottom: 4px;
             }
-            table td {
+            .table.wrap-images .td a:first-child {
+                display: block;
+            }
+            .table .td {
                 padding: 8px;
                 width: 224px;
-                vertical-align: top;
+                flex-grow: 1;
+            }
+            .table {
+                display: flex;
+                flex-wrap: wrap;
             }
             span.manifold {
                 text-decoration: none;
@@ -64,14 +71,12 @@
     
     <div class="frame hide-no-pythonanywhere">
         <h3>This site (<a href="/">ratingers.pythonanywhere.com</a>) contains</h3>
-        <table>
-            <tr>
-                <td><a href="/cf-tasks-rating">A neural network</a> that tries to evaluate Codeforces tasks rating</td>
-                <td><a href="/ratelance">Ratelance</a>, an onchain freelancing platform</td>
-                <td><a href="/tx-group-explorer">ChainArrowViewer</a>, TON explorer for studying transaction chains</td>
-                <td><a href="/deployer">WebDeployer</a>, a tool for deploying TON contracts with given code and data</td>
-            </tr>
-        </table>
+        <div class="table">
+            <div class="td"><a href="/cf-tasks-rating">A neural network</a> that tries to evaluate Codeforces tasks rating</div>
+            <div class="td"><a href="/ratelance">Ratelance</a>, an onchain freelancing platform</div>
+            <div class="td"><a href="/tx-group-explorer">ChainArrowViewer</a>, TON explorer for studying transaction chains</div>
+            <div class="td"><a href="/deployer">WebDeployer</a>, a tool for deploying TON contracts with given code and data</div>
+        </div>
     </div>
     
     <div>
@@ -91,8 +96,7 @@
     </ul>
 
     <div class="quote">
-        The blockchain development is mostly an architect's work. When working on TON Timer, I had to design contracts' interaction scheme. Several times I had to rework it because I've chosen a data structure that requires to maintain certain invariants, and I mistakenly thought that they are not necessary or will be maintained automatically.<br><br>
-        Also, you should be open to the truth, especially when it comes to say that the program is suboptimal. When I realized that the tree-like scheme of timer subcontracts uses two round loops of messages to complete the operation, I've understood that this is <b>not</b> the correct way to do it, and I switched to much simpler architecture that holds all data in a single contract, surprisingly being more gas-efficient.
+        <a href="some-wisdom.html">A piece of wisdom about development</a>
     </div>
 
     <h3>Recent Activity</h3>
@@ -116,70 +120,66 @@
     I've created contract on `resolve-contract.ton`. When you pass the domain name you want to find as subdomain (like `stabletimer.ton.resolve-contract.ton`), you get the address of domain contract. You're then able to renew it, gather statistics or do whatever else.
 
     <h3>TON Hall of Fame <i>(updated at 2023-07-02)</i></h3>
-    <table>
-        <tr>
-            <td>
-              <a href="https://tonscan.org/nft/EQA1st2MaZ1stGiYcGfgzQ-uohivzUwklLpBI5ecYi6ZES94"><img src="https://i.tonscan.org/resize/_hAErCuNZnms5lXhyV3pExB7awRGa3k-wnoYS3fyxt0/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0L2IvYy82MmZiYTUwMjE3YzNmZTNjYmFhZDllN2YvaW1hZ2VzLzk0M2U5OTRmOTEyMjdjM2ZkYmNjYmM2ZDg2MzViZmFhYjI1NmZiYjQ.jpg"></img></a>
-              <a href="https://ton.org/ton-smart-challenge-2">TSC #2, 1st place out of 181</a>
-            </td>
-            <td>
-              <a href="https://tonscan.org/nft/EQD3e-JJIJfX00kqCGyIBqzAabjzrQhQqKxWcbYG1VwnUkXE"><img src="https://i.tonscan.org/resize/EZN6c0zP8OtysTCkbDruvO6Tl3fGo6Fts9nQ6yiK09Q/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0L2IvYy82MzNlZTg4OGJhNzA5YjA0ZTQ4MDY2ZWEvaW1hZ2VzLzMyZTEyNjViNGZmZTk4MmJhMTcxNjhhMDM0ZmUwNTA2Y2IwODlmNmM.jpg"></img></a>
-              <a href="https://ton.org/ton-test-challenge">TON Test Challenge</a>
-            </td>
-            <td>
-              <a href="https://tonscan.org/nft/EQChYRN6rcy7pR61Pfj1JwH_-9HOvkqtAJFydESSdlGRHoar"><img src="https://i.tonscan.org/resize/ukt2jl8Qc1d9peQlN66sf8yHVUxDTw2SGcIgRD4lp8c/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0LWxvY2FsL2IvYy9mODRlZjdjYjBjMWQwODVkMDliMDAwMDAvaW1hZ2VzL3hKV3RPdWRsSDViMWQyWU0zaFBfM0hCRHZ3MGhfMVBDcXJPbDNWcHc2NFEuanBn.jpg"></img></a>
-              <a href="https://ton.org/ton-hack-challenge">TON Hack Challenge</a>
-            </td>
-            <td>
-              <img src="https://ton.org/images/ton-smart-challenge-func/1440.png" style="object-fit: cover;object-position: left;"></img>
-              <a href="https://ton.org/ton-smart-challenge-3">TON Smart Challenge 3</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <a href="https://tonscan.org/nft/EQBg-8wftvohlEIf49w1uZ_mJdIAkwn7WWnR2DDNlKZioODq"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
-              <a href="https://github.com/ton-society/ton-footsteps/issues/110">TON Footstep #110</a>
-            </td>
-            <td>
-              <a href="https://tonscan.org/nft/EQCdZpMZ-dD0wYjvga83UcN8g5jW78w0VM8-fJOgxqU9DPTg"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
-              <a href="https://github.com/ton-society/ton-footsteps/issues/123">TON Footstep #123</a>
-            </td>
-            <td>
-              <a href="https://tonscan.org/nft/EQA32uVyPvUJoQ59GA2IaAWVYtYbBhlGdYoZTgCDbeQz76t_"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
-              <a href="https://github.com/ton-society/ton-footsteps/issues/124">TON Footstep #124</a>
-            </td>
-            <td>
-              <a href="https://tonscan.org/nft/EQAUHcqceO8qvG37cHfHPIBpUK4ttIGcyNnWbmdTuibdl6g5"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
-              <a href="https://github.com/ton-society/ton-footsteps/issues/150">TON Footstep #150</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <a href="https://tonscan.org/tx/dAxZlThmKBV-5eiAzSxzkADjMH_LFkVFmSXzYGHmTNk="><img src="https://repository-images.githubusercontent.com/595624687/47a85578-12e7-4e4c-a12c-8aae6c0a6c29" style="height: 176px;margin-bottom: 30px;"></img></a>
-              Ratelance quadratic fund. (<a href="https://dorahacks.io/buidl/4227">DoraHacks Hack-a-TONx</a>)
-            </td>
-            <td>
-              <a href="https://programcrafter.github.io/ton-stable-timer/"><img src="https://programcrafter.github.io/ton-stable-timer/logo.png"></img></a>
-              TON Timer (<a href="https://github.com/ton-society/ton-footsteps/issues/71">Footstep 71</a>)
-            </td>
-            <td>
-              <svg width="224" height="224" viewBox="0 0 78 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="table wrap-images">
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQA1st2MaZ1stGiYcGfgzQ-uohivzUwklLpBI5ecYi6ZES94"><img src="https://i.tonscan.org/resize/_hAErCuNZnms5lXhyV3pExB7awRGa3k-wnoYS3fyxt0/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0L2IvYy82MmZiYTUwMjE3YzNmZTNjYmFhZDllN2YvaW1hZ2VzLzk0M2U5OTRmOTEyMjdjM2ZkYmNjYmM2ZDg2MzViZmFhYjI1NmZiYjQ.jpg"></img></a>
+          <a href="https://ton.org/ton-smart-challenge-2">TSC #2, 1st place out of 181</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQD3e-JJIJfX00kqCGyIBqzAabjzrQhQqKxWcbYG1VwnUkXE"><img src="https://i.tonscan.org/resize/EZN6c0zP8OtysTCkbDruvO6Tl3fGo6Fts9nQ6yiK09Q/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0L2IvYy82MzNlZTg4OGJhNzA5YjA0ZTQ4MDY2ZWEvaW1hZ2VzLzMyZTEyNjViNGZmZTk4MmJhMTcxNjhhMDM0ZmUwNTA2Y2IwODlmNmM.jpg"></img></a>
+          <a href="https://ton.org/ton-test-challenge">TON Test Challenge</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQChYRN6rcy7pR61Pfj1JwH_-9HOvkqtAJFydESSdlGRHoar"><img src="https://i.tonscan.org/resize/ukt2jl8Qc1d9peQlN66sf8yHVUxDTw2SGcIgRD4lp8c/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zLmdldGdlbXMuaW8vbmZ0LWxvY2FsL2IvYy9mODRlZjdjYjBjMWQwODVkMDliMDAwMDAvaW1hZ2VzL3hKV3RPdWRsSDViMWQyWU0zaFBfM0hCRHZ3MGhfMVBDcXJPbDNWcHc2NFEuanBn.jpg"></img></a>
+          <a href="https://ton.org/ton-hack-challenge">TON Hack Challenge</a>
+        </div>
+        <div class="td">
+          <a><img src="https://ton.org/images/ton-smart-challenge-func/1440.png" style="object-fit: cover;object-position: left;"></img></a>
+          <a href="https://ton.org/ton-smart-challenge-3">TON Smart Challenge 3</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQBg-8wftvohlEIf49w1uZ_mJdIAkwn7WWnR2DDNlKZioODq"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+          <a href="https://github.com/ton-society/ton-footsteps/issues/110">TON Footstep #110</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQCdZpMZ-dD0wYjvga83UcN8g5jW78w0VM8-fJOgxqU9DPTg"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+          <a href="https://github.com/ton-society/ton-footsteps/issues/123">TON Footstep #123</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQA32uVyPvUJoQ59GA2IaAWVYtYbBhlGdYoZTgCDbeQz76t_"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+          <a href="https://github.com/ton-society/ton-footsteps/issues/124">TON Footstep #124</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQAUHcqceO8qvG37cHfHPIBpUK4ttIGcyNnWbmdTuibdl6g5"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+          <a href="https://github.com/ton-society/ton-footsteps/issues/150">TON Footstep #150</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/tx/dAxZlThmKBV-5eiAzSxzkADjMH_LFkVFmSXzYGHmTNk="><img src="https://repository-images.githubusercontent.com/595624687/47a85578-12e7-4e4c-a12c-8aae6c0a6c29" style="height: 176px;margin-bottom: 30px;"></img></a>
+          Ratelance quadratic fund. (<a href="https://dorahacks.io/buidl/4227">DoraHacks Hack-a-TONx</a>)
+        </div>
+        <div class="td">
+          <a href="https://programcrafter.github.io/ton-stable-timer/"><img src="https://programcrafter.github.io/ton-stable-timer/logo.png"></img></a>
+          TON Timer (<a href="https://github.com/ton-society/ton-footsteps/issues/71">Footstep 71</a>)
+        </div>
+        <div class="td">
+          <a><svg width="224" height="224" viewBox="0 0 78 80" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M39.8492 58.2373C39.9469 58.1595 40.0347 58.0694 40.1106 57.9692L29.0504 78.5039C20.7286 76.2697 13.3636 71.2691 8.10735 64.2844C2.85111 57.2997 0.000164585 48.7249 0.000495097 39.9014C0.000622793 29.3189 4.0991 19.1699 11.3943 11.687C18.6895 4.20412 28.5839 0.000345159 38.9007 0.000469743C39.5231 0.000477259 40.1766 0.0228408 40.8146 0.0515775L26.689 25.2372L24.9681 28.3111L24.9307 28.3686L24.912 28.4005C24.8845 28.4298 24.8614 28.4631 24.8436 28.4995C24.8116 28.5378 24.7854 28.5809 24.7658 28.6272C24.7303 28.6782 24.6981 28.7315 24.6693 28.7868C24.632 28.8761 24.5822 28.956 24.5542 29.0421L24.5137 29.1219C24.5137 29.1219 24.5137 29.1219 24.5137 29.1443L24.467 29.2209C24.4468 29.2545 24.436 29.2931 24.4359 29.3326L24.4079 29.3997C24.3581 29.5401 24.3207 29.6678 24.2834 29.8082C24.2534 29.8949 24.2335 29.9849 24.2243 30.0764C24.1956 30.1808 24.1759 30.2876 24.1651 30.3956C24.1544 30.4384 24.1481 30.4822 24.1465 30.5264C24.1201 30.7071 24.1076 30.8896 24.1091 31.0723C24.1091 31.2096 24.1091 31.3373 24.1278 31.4777C24.2192 32.3114 24.4972 33.1122 24.94 33.8175C24.94 33.8175 24.94 33.8175 24.94 33.8367L37.5463 57.6851C37.6131 57.8186 37.7015 57.9394 37.8077 58.0426C37.9486 58.1982 38.1189 58.3227 38.3084 58.4083C38.4978 58.494 38.7023 58.539 38.9094 58.5406C38.9865 58.5379 39.0634 58.5304 39.1396 58.5182C39.2025 58.516 39.2646 58.5031 39.3233 58.4799C39.4574 58.4435 39.5854 58.3864 39.7029 58.3108C39.7537 58.2907 39.8026 58.2661 39.8492 58.2373Z" fill="url(#paint0_linear_945_3332)"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M77.7814 39.8836C77.7812 61.6377 60.6308 79.5069 39.4225 79.7844C35.9236 79.8432 32.4331 79.4136 29.0471 78.5074L40.1074 57.9728C40.1625 57.9006 40.2114 57.8237 40.2537 57.7429L53.1034 33.847C53.1015 33.8407 53.1015 33.8341 53.1034 33.8278C53.5011 33.0388 53.7062 32.1625 53.7009 31.2742C53.7044 30.4166 53.4991 29.5717 53.1034 28.8162C53.0775 28.7744 53.0546 28.7307 53.035 28.6854C52.625 27.9682 52.0293 27.3815 51.3141 26.9903C50.636 26.6519 49.8897 26.4824 49.1357 26.4955L28.805 26.4953C28.6588 26.4953 28.4938 26.4953 28.3227 26.4953C28.1442 26.4973 27.9662 26.5144 27.7905 26.5463C27.5788 26.5629 27.3698 26.6058 27.1681 26.674C26.9477 26.7345 26.734 26.8179 26.5301 26.923C26.3782 26.9954 26.2324 27.0808 26.0945 27.1783C26.0945 27.1783 26.0758 27.1784 26.0665 27.2007C25.9362 27.2818 25.8133 27.3747 25.6992 27.4784C25.6645 27.5039 25.6322 27.5328 25.6028 27.5646C25.4863 27.6637 25.3761 27.7703 25.2729 27.8838C25.1529 28.0134 25.0426 28.1521 24.943 28.2988L26.664 25.2248L40.7896 0.0392539C50.7627 0.541646 60.1655 4.95855 67.0514 12.3755C73.9374 19.7925 77.7792 29.6415 77.7814 39.8836Z" fill="url(#paint1_linear_945_3332)"/><defs><linearGradient id="paint0_linear_945_3332" x1="20.4062" y1="-0.775436" x2="20.4053" y2="77.7217" gradientUnits="userSpaceOnUse"><stop stop-color="#138AAB"/><stop offset="1" stop-color="#21D0B3"/></linearGradient><linearGradient id="paint1_linear_945_3332" x1="51.3704" y1="-1.05232" x2="51.3694" y2="80.7837" gradientUnits="userSpaceOnUse"><stop stop-color="#1DCDFE"/><stop offset="1" stop-color="#1492B5"/></linearGradient></defs></svg>
-              Audit of <a href="https://tonb.io/techdescription">TONBanking</a>
-            </td>
-            <td>
-              <img src="https://s.getgems.io/nft/c/636f9fe5779e098085cf4b16/4/image.png"></img>
-              <a href="https://github.com/ProgramCrafter/wallet-contract/">wallet v5</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <a href="https://tonscan.org/nft/EQDv7kUFj9QGRZcgFBXMNZifKPtqNPAqxDMQFFL13xzl-QwC"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
-              <a href="https://github.com/ton-society/ton-footsteps/issues/251">TON Footstep #251</a>
-            </td>
-        </tr>
-    </table>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M77.7814 39.8836C77.7812 61.6377 60.6308 79.5069 39.4225 79.7844C35.9236 79.8432 32.4331 79.4136 29.0471 78.5074L40.1074 57.9728C40.1625 57.9006 40.2114 57.8237 40.2537 57.7429L53.1034 33.847C53.1015 33.8407 53.1015 33.8341 53.1034 33.8278C53.5011 33.0388 53.7062 32.1625 53.7009 31.2742C53.7044 30.4166 53.4991 29.5717 53.1034 28.8162C53.0775 28.7744 53.0546 28.7307 53.035 28.6854C52.625 27.9682 52.0293 27.3815 51.3141 26.9903C50.636 26.6519 49.8897 26.4824 49.1357 26.4955L28.805 26.4953C28.6588 26.4953 28.4938 26.4953 28.3227 26.4953C28.1442 26.4973 27.9662 26.5144 27.7905 26.5463C27.5788 26.5629 27.3698 26.6058 27.1681 26.674C26.9477 26.7345 26.734 26.8179 26.5301 26.923C26.3782 26.9954 26.2324 27.0808 26.0945 27.1783C26.0945 27.1783 26.0758 27.1784 26.0665 27.2007C25.9362 27.2818 25.8133 27.3747 25.6992 27.4784C25.6645 27.5039 25.6322 27.5328 25.6028 27.5646C25.4863 27.6637 25.3761 27.7703 25.2729 27.8838C25.1529 28.0134 25.0426 28.1521 24.943 28.2988L26.664 25.2248L40.7896 0.0392539C50.7627 0.541646 60.1655 4.95855 67.0514 12.3755C73.9374 19.7925 77.7792 29.6415 77.7814 39.8836Z" fill="url(#paint1_linear_945_3332)"/><defs><linearGradient id="paint0_linear_945_3332" x1="20.4062" y1="-0.775436" x2="20.4053" y2="77.7217" gradientUnits="userSpaceOnUse"><stop stop-color="#138AAB"/><stop offset="1" stop-color="#21D0B3"/></linearGradient><linearGradient id="paint1_linear_945_3332" x1="51.3704" y1="-1.05232" x2="51.3694" y2="80.7837" gradientUnits="userSpaceOnUse"><stop stop-color="#1DCDFE"/><stop offset="1" stop-color="#1492B5"/></linearGradient></defs></svg></a>
+          Audit of <a href="https://tonb.io/techdescription">TONBanking</a>
+        </div>
+        <div class="td">
+          <a><img src="https://s.getgems.io/nft/c/636f9fe5779e098085cf4b16/4/image.png"></img></a>
+          <a href="https://github.com/ProgramCrafter/wallet-contract/">wallet v5</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQDv7kUFj9QGRZcgFBXMNZifKPtqNPAqxDMQFFL13xzl-QwC"><img src="https://i.tonscan.org/resize/hu4_BAWC4BIdKCfYVxHkWYb5UcGY8IPzrDcBzYvSh0Y/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9zYnQtYm90LW1pbnRlci5zMy5hbWF6b25hd3MuY29tL3Rvbi1mb290c3RlcHMvY29sbGVjdGlvbi5wbmc.jpg"></img></a>
+          <a href="https://github.com/ton-society/ton-footsteps/issues/251">TON Footstep #251</a>
+        </div>
+        <div class="td">
+          <a href="https://tonscan.org/nft/EQBJecG5Aat6EBw-h_KiT9JopqjJwNAD2yXu18t2GQuEB7ES"><img src="https://i.tonscan.org/resize/Ix8SxSxYn_qIlIdHAu3ziYpdMMrMrCwp8RGbVyxQs5A/f:jpg/rs:fit:640:640:0/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0Nvc21vZHVkZS9UQVAvbWFpbi9IYWNrVG9uQmVyRmVzdC5wbmc.jpg"></img></a>
+          <a href="https://society.ton.org/hack-ton-berfest-2023">Hack-TON-berfest 2023</a>
+        </div>
+    </div>
     
     <script>
         if (location.host == 'ratingers.pythonanywhere.com') {

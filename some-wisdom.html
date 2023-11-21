@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html style="background-color: #F7F9FB;">
+    <head>
+        <style>
+            .quote {
+                padding: 8px 0 8px 16px;
+                margin-left: 16px;
+                border-left: #08c 1px solid;
+            }
+            .frame {
+                padding: 0 0 8px 20px;
+                margin-left: 16px;
+                margin-top: 48px;
+                margin-bottom: 48px;
+                border: #08c 4px solid;
+                color: #306;
+            }
+            .hide-no-pythonanywhere {
+                display: none;
+                visibility: hidden;
+            }
+            .offset {
+                margin-left: 32px;
+            }
+            li {
+                margin-bottom: 6px;
+            }
+            b, i {
+                color: #232328;
+            }
+            .table img, .table svg {
+                width: 224px;
+                height: 224px;
+                margin-bottom: 4px;
+            }
+            .table.wrap-images .td a:first-child {
+                display: block;
+            }
+            .table .td {
+                padding: 8px;
+                width: 224px;
+                flex-grow: 1;
+            }
+            .table {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            span.manifold {
+                text-decoration: none;
+                position: relative;
+            }
+            span.manifold:after {
+                content: ' ';
+                font-size: inherit;
+                display: block;
+                position: absolute;
+                right: 0;
+                left: 0;
+                top: 40%;
+                bottom: 40%;
+                border-top: 1px solid #00a;
+                border-bottom: 1px solid #00a;
+            }
+        </style>
+    </head>
+    
+    <body style="border: #08c 1px solid;max-width: 1020px;margin: 16px auto;padding: 16px;font-family: Bahnschrift;font-size: 18px;">
+    <header style="padding: 8px; padding-bottom: 16px;border-bottom: #08c 1px solid;margin-bottom: 16px;display: flex;">
+      <img src="https://avatars.githubusercontent.com/u/82749242" width="64" height="64"><span style="font-size: 22px;margin: 16px;line-height: 32px;">ProgramCrafter | Software Engineer &amp; Architect - <a href="https://t.me/pcrafter">Telegram</a> - <a href="https://gitlab.com/ProgramCrafter">GitLab</a> - <a href="https://github.com/ProgramCrafter">GitHub</a> - <a href="https://codeforces.com/profile/2020TAndr">Codeforces</a></span>
+    </header>
+    
+    <div>
+    <h3>A Piece Of Wisdom</h3>
+
+    <div class="quote">
+        The blockchain development is mostly an architect's work. When working on TON Timer, I had to design contracts' interaction scheme. Several times I had to rework it because I've chosen a data structure that requires to maintain certain invariants, and I mistakenly thought that they are not necessary or will be maintained automatically.<br><br>
+        Also, you should be open to the truth, especially when it comes to say that the program is suboptimal. When I realized that the tree-like scheme of timer subcontracts uses two round loops of messages to complete the operation, I've understood that this is <b>not</b> the correct way to do it, and I switched to much simpler architecture that holds all data in a single contract, surprisingly being more gas-efficient.
+    </div>
+
+    <br><a href="CV-2023.html">Back</a>
+</div></body></html>
